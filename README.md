@@ -2,7 +2,7 @@
 
 #### 效果图：
 
-![日期显示效果图]()
+![日期显示效果图](https://github.com/Nosophora/NotePad-master/blob/master/Images/timestamp.png)
 
 #### 实现方法：
 
@@ -52,7 +52,7 @@ private int[] viewIDs = { R.id.text1,R.id.text2 };
 
 #### 效果图：
 
-![搜索效果图]()
+![搜索效果图](https://github.com/Nosophora/NotePad-master/blob/master/Images/search.png)
 
 #### 实现方法：
 
