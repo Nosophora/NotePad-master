@@ -6,7 +6,7 @@
 
 #### 实现方法：
 
-(1).在布局文件notelist_item.xml中增加一个TextView来显示日期
+在布局文件notelist_item.xml中增加一个TextView来显示日期
 ```
 <TextView
 android:id="@+id/text2"
