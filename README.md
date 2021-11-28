@@ -1,16 +1,49 @@
+### 主要功能1：增加日期显示
+
+#### 效果图：
+
+![日期显示效果图]()
+
+#### 实现方法：
+
+(1).在布局文件notelist_item.xml中增加一个TextView来显示日期
+
+<TextView
+android:id="@+id/text2"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:textAppearance="?android:attr/textAppearanceLarge"
+android:textSize="12dp"
+android:gravity="center_vertical"
+android:paddingLeft="10dip"
+android:singleLine="true"
+android:layout_weight="1"
+android:layout_margin="0dp"
+/>
+
+在NodeEditor.java中,找到updateNode()函数，新增修改时间字段，并将其格式化存入数据库
+
+Date nowTime = new Date(System.currentTimeMillis());
+SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String retStrFormatNowDate = sdFormatter.format(nowTime);
+// Sets up a map to contain values to be updated in the provider.
+ContentValues values = new ContentValues();
+values.put(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, retStrFormatNowDate);
+
+在NoteList.java的PROJECTION数组中增加该字段的描述，并在SimpleCursorAdapter中的参数viewsIDs和dataColumns增加子段描述，以达到将其读出和显示的目的
 
 private static final String[] PROJECTION = new String[] {
 NotePad.Notes._ID, // 0
 NotePad.Notes.COLUMN_NAME_TITLE, // 1
 NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE,
 };
-/** The index of the title column */
+    /** The index of the title column */
 private static final int COLUMN_INDEX_TITLE = 1;
 private SimpleCursorAdapter adapter;
-// The names of the cursor columns to display in the view, initialized to the title column
+    // The names of the cursor columns to display in the view, initialized to the title column
 private String[] dataColumns = { NotePad.Notes.COLUMN_NAME_TITLE ,NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE} ;
-// The view IDs that will display the cursor columns, initialized to the TextView in
-// noteslist_item.xml
+    // The view IDs that will display the cursor columns, initialized to the TextView in
+    // noteslist_item.xml
 private int[] viewIDs = { R.id.text1,R.id.text2 };
 
 ------
